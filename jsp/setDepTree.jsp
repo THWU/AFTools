@@ -46,13 +46,14 @@
 	<!-- intTreeLevel < 10 用來限制遞迴數為 9 次 -->
 	<c:if test="${DepList.rowCount != 0 && intTreeLevel < 10}">
 		
-		<!-- 將部門名稱縮排，模擬出階層 -->
+		<!-- 預設情況是建立在 Select 元素 內的 Option 項目，可根據需要變更元素類型 -->
 		<option value="${row.DepID}" style="font-weight:bold;">
+			<!-- 將部門名稱縮排，模擬出階層 -->
 			<c:forEach var="i" begin="1" end="${intTreeLevel}">
 				&nbsp;&nbsp;
 			</c:forEach>
 			${row.Name}
-		</option>		
+		</option>
 		<c:set var="intNextTreeLevel" value="${intTreeLevel + 1}"/>
 		<!-- 利用 jsp:include 達到遞迴查詢 -->
 		<jsp:include page="setDepTree.jsp?ParentDepID=${row.DepID}&TreeLevel=${intNextTreeLevel}"/>
